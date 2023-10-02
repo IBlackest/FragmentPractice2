@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.fragmentpractice2.R
@@ -21,7 +22,7 @@ class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView)
             .load(user.photoUri)
             .transform(
-                FitCenter(),
+                CenterCrop(),
                 RoundedCorners(
                     itemView.resources
                         .getDimensionPixelSize(R.dimen.rounded_corners_radius)

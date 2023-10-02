@@ -31,7 +31,6 @@ class UsersFragment : Fragment() {
         binding.recyclerView.apply {
             adapter = usersAdapter
             layoutManager = LinearLayoutManager(requireContext())
-
         }
     }
 }
