@@ -7,6 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.UserDetailsFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <TextView
+            android:id="@+id/screen_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/user_info"
+            android:textSize="24sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/vertical_barrier"
         android:layout_width="wrap_content"
@@ -44,13 +62,12 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintDimensionRatio="h, 1:1"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        app:layout_constraintBottom_toTopOf="@id/first_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/name"
@@ -105,11 +122,11 @@
         android:id="@+id/edit_user_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:background="@drawable/bg_button"
         android:padding="8dp"
         android:text="@string/edit"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fourth_barrier" />

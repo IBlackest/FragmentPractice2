@@ -74,6 +74,10 @@ class UserDetailsFragment : Fragment() {
                 }
             }
         }
+
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun getUserEditFragment(user: User) = UserEditFragment().apply {
@@ -94,7 +98,6 @@ class UserDetailsFragment : Fragment() {
                 )
             )
             .into(binding.photo)
-
     }
 
     companion object {
