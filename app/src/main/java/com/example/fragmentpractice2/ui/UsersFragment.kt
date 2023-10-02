@@ -17,6 +17,8 @@ import com.example.fragmentpractice2.ui.adapter.UsersAdapter
 class UsersFragment : Fragment() {
 
     private lateinit var binding: FragmentUsersBinding
+    private lateinit var usersAdapter: UsersAdapter
+    private var positionClicked = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,8 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val usersAdapter = UsersAdapter { user ->
+        usersAdapter = UsersAdapter { user, position ->
+            positionClicked = position
             parentFragmentManager.commit {
                 addToBackStack(null)
                 setReorderingAllowed(true)
@@ -46,6 +49,19 @@ class UsersFragment : Fragment() {
 
     private fun getUserDetailsFragment(user: User) = UserDetailsFragment().apply {
         arguments = bundleOf(USER to user)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (positionClicked > -1) {
+            usersAdapter.apply {
+                userList.clear()
+                userList.addAll(DataProvider.usersList)
+                notifyDataSetChanged()
+            }
+            positionClicked = -1
+        }
     }
 
     companion object {

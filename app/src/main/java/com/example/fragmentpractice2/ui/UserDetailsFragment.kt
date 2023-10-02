@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResultListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -20,6 +23,7 @@ class UserDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentUserDetailsBinding
     private var user: User? = null
+    private var updatedUser: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +31,19 @@ class UserDetailsFragment : Fragment() {
     ): View {
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                parentFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace(R.id.fragment_container, UsersFragment())
+                }
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,6 +55,15 @@ class UserDetailsFragment : Fragment() {
             arguments?.getParcelable(USER)
         }
         if (user != null) renderUi(user!!)
+
+        setFragmentResultListener(REQUEST) { _, bundle ->
+            updatedUser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                bundle.getParcelable(BUNDLE, User::class.java)
+            } else {
+                bundle.getParcelable(BUNDLE)
+            }
+            if (updatedUser != null) renderUi(updatedUser!!)
+        }
 
         binding.editUserButton.setOnClickListener {
             if (user != null) {
@@ -72,6 +98,8 @@ class UserDetailsFragment : Fragment() {
     }
 
     companion object {
+        const val REQUEST = "REQUEST"
+        const val BUNDLE = "BUNDLE"
         const val USER = "USER"
     }
 }
