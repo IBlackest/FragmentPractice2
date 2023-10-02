@@ -30,6 +30,6 @@ class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(photo)
         name.text = user.name
         secondName.text = user.secondName
-        phoneNumber.text = user.phoneNumber.toString()
+        phoneNumber.text = if (user.phoneNumber == 0L) "" else user.phoneNumber.toString()
     }
 }

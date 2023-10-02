@@ -46,7 +46,9 @@ class UserEditFragment : Fragment() {
                 photoUri = user!!.photoUri,
                 name = binding.userName.text.toString(),
                 secondName = binding.userSecondName.text.toString(),
-                phoneNumber = binding.userPhoneNumber.text.toString().toLong()
+                phoneNumber = if (binding.userPhoneNumber.text.toString()
+                        .isEmpty()
+                ) 0L else binding.userPhoneNumber.text.toString().toLong()
             )
             DataProvider.usersList[DataProvider.usersList.indexOf(user)] = updatedUser
             setFragmentResult(

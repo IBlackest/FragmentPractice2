@@ -87,7 +87,8 @@ class UserDetailsFragment : Fragment() {
     private fun renderUi(user: User) {
         binding.userName.text = user.name
         binding.userSecondName.text = user.secondName
-        binding.userPhoneNumber.text = user.phoneNumber.toString()
+        binding.userPhoneNumber.text =
+            if (user.phoneNumber == 0L) "" else user.phoneNumber.toString()
         Glide.with(requireContext())
             .load(TextUtil.getHighResPhoto(user.photoUri))
             .transform(
