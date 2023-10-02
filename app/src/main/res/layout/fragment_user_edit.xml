@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.UserEditFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/vertical_barrier"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="name, second_name, phone_number" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/first_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="photo" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/second_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="name, user_name" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/third_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="second_name, user_second_name" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/fourth_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="phone_number, user_phone_number" />
+
+    <TextView
+        android:id="@+id/edit_user_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/edit_user"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintDimensionRatio="h, 1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_user_button" />
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/ContactTextStyle"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="@id/second_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_barrier" />
+
+    <EditText
+        android:id="@+id/user_name"
+        style="@style/ContactTextStyle"
+        android:layout_margin="8dp"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toBottomOf="@id/second_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/first_barrier" />
+
+    <TextView
+        android:id="@+id/second_name"
+        style="@style/ContactTextStyle"
+        android:text="@string/second_name"
+        app:layout_constraintBottom_toTopOf="@id/third_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_barrier" />
+
+    <EditText
+        android:id="@+id/user_second_name"
+        style="@style/ContactTextStyle"
+        android:layout_margin="8dp"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toTopOf="@id/third_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/second_barrier" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        style="@style/ContactTextStyle"
+        android:text="@string/phone_number"
+        app:layout_constraintBottom_toTopOf="@id/fourth_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_barrier" />
+
+    <EditText
+        android:id="@+id/user_phone_number"
+        style="@style/ContactTextStyle"
+        android:layout_margin="8dp"
+        android:inputType="phone"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toTopOf="@id/fourth_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/third_barrier" />
+
+    <TextView
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button"
+        android:padding="8dp"
+        android:text="@string/save"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourth_barrier" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

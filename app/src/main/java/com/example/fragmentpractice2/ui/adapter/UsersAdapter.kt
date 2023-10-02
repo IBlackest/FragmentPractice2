@@ -18,12 +18,12 @@ class UsersAdapter(private val clickListener: ClickListener) :
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.onBind(userList[position])
-        holder.itemView.setOnClickListener { clickListener.onClick() }
+        holder.itemView.setOnClickListener { clickListener.onClick(userList[position]) }
     }
 
     override fun getItemCount(): Int = userList.size
 
     fun interface ClickListener {
-        fun onClick()
+        fun onClick(user: User)
     }
 }

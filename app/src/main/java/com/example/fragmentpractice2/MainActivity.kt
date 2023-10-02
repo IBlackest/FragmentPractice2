@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
+                setReorderingAllowed(true)
                 add<UsersFragment>(R.id.fragment_container)
             }
         }
