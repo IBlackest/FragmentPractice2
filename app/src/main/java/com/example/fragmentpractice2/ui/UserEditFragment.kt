@@ -60,13 +60,14 @@ class UserEditFragment : Fragment() {
                 replace(R.id.fragment_container, UserDetailsFragment())
             }
         }
-
     }
 
     private fun renderUi(user: User) {
-        binding.userName.setText(user.name)
-        binding.userSecondName.setText(user.secondName)
-        binding.userPhoneNumber.setText(user.phoneNumber.toString())
+        binding.apply {
+            userName.setText(user.name)
+            userSecondName.setText(user.secondName)
+            userPhoneNumber.setText(user.phoneNumber.toString())
+        }
         Glide.with(requireContext())
             .load(TextUtil.getHighResPhoto(user.photoUri))
             .transform(
@@ -77,7 +78,6 @@ class UserEditFragment : Fragment() {
                 )
             )
             .into(binding.photo)
-
     }
 
     companion object {

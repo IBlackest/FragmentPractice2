@@ -37,10 +37,12 @@ class UserDetailsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                parentFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace(R.id.fragment_container, UsersFragment())
+                parentFragmentManager.apply {
+                    popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    commit {
+                        setReorderingAllowed(true)
+                        replace(R.id.fragment_container, UsersFragment())
+                    }
                 }
             }
         })
@@ -85,10 +87,12 @@ class UserDetailsFragment : Fragment() {
     }
 
     private fun renderUi(user: User) {
-        binding.userName.text = user.name
-        binding.userSecondName.text = user.secondName
-        binding.userPhoneNumber.text =
-            if (user.phoneNumber == 0L) "" else user.phoneNumber.toString()
+        binding.apply {
+            userName.text = user.name
+            userSecondName.text = user.secondName
+            userPhoneNumber.text =
+                if (user.phoneNumber == 0L) "" else user.phoneNumber.toString()
+        }
         Glide.with(requireContext())
             .load(TextUtil.getHighResPhoto(user.photoUri))
             .transform(

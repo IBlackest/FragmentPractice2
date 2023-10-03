@@ -58,7 +58,7 @@ class UsersFragment : Fragment() {
             usersAdapter.apply {
                 userList.clear()
                 userList.addAll(DataProvider.usersList)
-                notifyDataSetChanged()
+                notifyItemChanged(positionClicked)
             }
             positionClicked = -1
         }
