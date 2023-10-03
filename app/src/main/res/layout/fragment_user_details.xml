@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.UserDetailsFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <TextView
+            android:id="@+id/screen_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/user_info"
+            android:textSize="24sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/vertical_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="name, second_name, phone_number" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/first_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="photo" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/second_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="name, user_name" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/third_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="second_name, user_second_name" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/fourth_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="phone_number, user_phone_number" />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        app:layout_constraintBottom_toTopOf="@id/first_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/ContactTextStyle"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="@id/second_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_barrier" />
+
+    <TextView
+        android:id="@+id/user_name"
+        style="@style/ContactTextStyle"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toBottomOf="@id/second_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/first_barrier" />
+
+    <TextView
+        android:id="@+id/second_name"
+        style="@style/ContactTextStyle"
+        android:text="@string/second_name"
+        app:layout_constraintBottom_toTopOf="@id/third_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_barrier" />
+
+    <TextView
+        android:id="@+id/user_second_name"
+        style="@style/ContactTextStyle"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toTopOf="@id/third_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/second_barrier" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        style="@style/ContactTextStyle"
+        android:text="@string/phone_number"
+        app:layout_constraintBottom_toTopOf="@id/fourth_barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_barrier" />
+
+    <TextView
+        android:id="@+id/user_phone_number"
+        style="@style/ContactTextStyle"
+        android:inputType="phone"
+        android:minWidth="200dp"
+        app:layout_constraintBottom_toTopOf="@id/fourth_barrier"
+        app:layout_constraintStart_toStartOf="@id/vertical_barrier"
+        app:layout_constraintTop_toBottomOf="@id/third_barrier" />
+
+    <TextView
+        android:id="@+id/edit_user_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:padding="8dp"
+        android:text="@string/edit"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourth_barrier" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
